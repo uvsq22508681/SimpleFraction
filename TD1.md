@@ -1,6 +1,6 @@
 # Compléments de programmation - TD 1
 Nom, Prénom, No Etudiant, Nc
-     > Répondre ici
+BA   Djiby    22508681    56
 ## Remarques préliminaires
 * Pour l'ensemble des TDs, vous créerez un compte individuel sur [github](https://github.com/) si vous n'en possédez pas déjà un.
 Vous nommerez ce compte de la façon suivante: `uvsq<MonNuméroÉtudiant>`.
@@ -17,55 +17,167 @@ Dans cet exercice, vous créerez une classe `Fraction` représentant un nombre r
 
 1. Sur la forge, créez le dépôt (_repository_) `SimpleFraction`;
 En terme de *commits*, quelle différence constatez-vous entre cocher une (ou plusieurs) des cases *Initialize this repository with* et n'en cocher aucune ?
-    > Répondre ici
+    > Si on coche une case (README, .gitignore, LICENSE), GitHub crée déjà un premier commit avec ces   fichiers.
+      Si on ne coche aucune case, le dépôt est totalement vide (pas de commit initial).
 
     *Pour la suite, ne cochez aucune de ces cases*.
 1. Localement, configurez `git` avec votre nom (`user.name`) et votre email (`user.email`) (cf. [Personnalisation de Git](https://git-scm.com/book/fr/v2/Personnalisation-de-Git-Configuration-de-Git));
     ```bash
-    # Répondre ici
+    # git config --global user.name "Djiby BA"
+      git config --global user.email "djibsonn1716@gmail.com"
+
     ```
 1. Initialisez le dépôt `git` local pour le projet (cf. [Démarrer un dépôt Git](https://git-scm.com/book/fr/v2/Les-bases-de-Git-D%C3%A9marrer-un-d%C3%A9p%C3%B4t-Git));
     ```bash
-    # Répondre ici
+    # cd "chemin/vers/votre/projet"   # Aller dans le dossier du projet
+      git init                        # Initialiser le dépôt Git local
+
     ```
 1. Dans votre IDE, créez la classe `Fraction` (vide pour le moment) et la classe `Main` (avec un simple affichage) dans le projet (cf. [Méthode `main`](https://docs.oracle.com/javase/specs/jls/se19/html/jls-12.html#jls-12.1.4));
 Vérifiez que le projet compile et s'exécute dans l'IDE;
 Validez les changements (cf. [Enregistrer des modifications dans le dépôt](https://git-scm.com/book/fr/v2/Les-bases-de-Git-Enregistrer-des-modifications-dans-le-d%C3%A9p%C3%B4t));
     ```bash
     # Commandes pour valider les changements
-    ```
+    ```git add Fraction.java Main.java    # Ajouter les fichiers au suivi Git
+       git commit -m "Création des classes Fraction et Main avec test compilation"
+
 1. Ajoutez la méthode `toString` à la classe `Fraction` (cf. [`Object.toString`](https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Object.html#toString())) qui retournera la chaîne `"Je suis une fraction."` et modifiez la classe `Main` en conséquence;
 Validez les changements;
     ```Java
     // Code pour tester toString
-    ```
+    ```public class Fraction {
+    @Override
+    public String toString() {
+        return "Je suis une fraction.";
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Fraction f = new Fraction();
+        System.out.println(f); // Test de toString
+    }
+}
+
 1. Publiez vos modifications sur le dépôt distant (cf. [Travailler avec des dépôts distants](https://git-scm.com/book/fr/v2/Les-bases-de-Git-Travailler-avec-des-d%C3%A9p%C3%B4ts-distants));
 Vous utiliserez le protocole `https` pour cela;
 Vérifiez avec le navigateur;
     ```bash
     # Commandes pour publier les modifications
-    ```
+    ```git remote add origin https://github.com/uvsq22508681/SimpleFraction.git
+       git push -u origin master
+
 1. Sur la forge, ajoutez un fichier de documentation `README.md`.
 Quelle syntaxe est utilisée pour ce fichier ?
-    > Répondre ici
+    > # Nom du projet
+Description du projet
+
+## Auteur
+Ton nom
+
 1. Récupérez localement les modifications effectuées sur la forge.
     ```bash
-    # Répondre ici
+    # git pull origin master
+
     ```
 1. Ajoutez les répertoires et fichiers issus de la compilation aux fichiers ignorés par `git` (cf. [`.gitignore` pour Java](https://github.com/github/gitignore/blob/main/Java.gitignore));
     ```bash
-    # Copier ici le contenu de `.gitignore`
-    ```
+    # # Fichiers de compilation
+*.class
+*.jar
+*.war
+*.ear
+
+# Répertoires de build
+bin/
+out/
+target/
+
+# Logs
+*.log
+
+
+## Auteur
+Djiby BA
+
 1. Retirez les fichiers de configuration de l'IDE du projet;
     ```bash
-    # Répondre ici
+  
+# Eclipse
+git rm --cached .classpath
+git rm --cached .project
+git rm --cached .settings/ -r
+
+# IntelliJ IDEA
+git rm --cached *.iml
+git rm --cached .idea/ -r
+
     ```
     Ajoutez-les aux fichiers ignorés par `git`.
     ```bash
+    # IDE
+*.iml
+.idea/
+.settings/
+.classpath
+.project
+
     # Copier ici les modifications de `.gitignore`
-    ```
+    ``
+# IDE Eclipse
+.classpath
+.project
+.settings/
+
+# IDE IntelliJ IDEA
+*.iml
+.idea/
+
+# Fichiers générés par la compilation Java
+/bin/
+/out/
+*.class
+
+# Autres fichiers temporaires
+*.log
+*.tmp
+
 1. Configurez l'accès par clé publique/clé privée à la forge (cf. [Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)).
     > Expliquez la procédure de façon synthétique
+Pour sécuriser et simplifier les échanges avec GitHub, il est possible d’utiliser une clé SSH plutôt que de passer par le protocole HTTPS avec login et mot de passe. La procédure se déroule en plusieurs étapes :
+
+Génération de la paire de clés SSH
+Sur votre machine, on génère une paire de clés (une publique et une privée) avec la commande :
+
+ssh-keygen -t ed25519 -C "djibsonn1716@gmail.com."
+
+
+Par défaut, les clés seront enregistrées dans le dossier ~/.ssh. La clé privée reste sur votre machine, tandis que la clé publique sera envoyée à GitHub.
+
+Ajout de la clé privée à l’agent SSH
+Pour que Git puisse utiliser la clé privée automatiquement, on l’ajoute à l’agent SSH :
+
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+
+
+Enregistrement de la clé publique sur GitHub
+Il faut copier le contenu du fichier ~/.ssh/id_ed25519.pub et le coller dans GitHub :
+
+Aller dans Settings → SSH and GPG keys → New SSH key
+
+Coller la clé et donner un nom explicite.
+
+Test de la connexion
+On vérifie que la configuration fonctionne :
+
+ssh -T git@github.com
+
+
+Un message de bienvenue de GitHub confirmera que la connexion SSH est opérationnelle.
+
+Modification de l’URL du dépôt pour utiliser SSH (optionnel si le dépôt était configuré en HTTPS) :
+
+git remote set-url origin git@github.com:username/nom-du-repo.git
 
 ## Partie II (à faire durant le TD) : compléter la classe `Fraction`
 Dans cet partie, vous compléterez les classes `Fraction` et `Main`.
