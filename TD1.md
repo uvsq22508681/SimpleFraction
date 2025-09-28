@@ -237,46 +237,53 @@ Vous pouvez répondre en utilisant le shell de votre choix (*bash*, *Powershell*
 Pour répondre à ces questions, vous devez effectuer les recherches documentaires adéquates (livre, web, …).
 
 1. Quel OS et quel shell de commande utilisez-vous ?
-    > Répondre ici
+    > Windows 10 avec PowerShell comme shell de commande.
 1. Quelle commande permet d'obtenir de l'aide ?
 Donnez un exemple.
     ```bash
-    # Répondre ici
+    # Get-Help Get-Process
+
     ```
 1. Donnez la ou les commandes shell permettant de
     1. afficher les fichiers d'un répertoire triés par taille (taille affichée lisiblement)
         ```bash
-        # Répondre ici
+        # Get-ChildItem | Sort-Object Length | Format-Table Name, Length
+
         ```
     1. compter le nombre de ligne d'un fichier
         ```bash
-        # Répondre ici
+        # Get-Content fichier.txt | Measure-Object -Line
+
         ```
     1. afficher les lignes du fichier `Main.java` contenant la chaîne `uneVariable`
         ```bash
-        # Répondre ici
+        #Select-String -Path Main.java -Pattern "uneVariable"
+
         ```
     1. afficher récursivement les fichiers `.java` contenant la chaîne `uneVariable`
         ```bash
-        # Répondre ici
+        # Select-String -Path *.java -Pattern "uneVariable" -Recurse
+
         ```
     1. trouver les fichiers (pas les répertoires) nommés `README.md` dans une arborescence de répertoires
         ```bash
-        # Répondre ici
+        # Get-ChildItem -Recurse -Filter "README.md" -File
+
         ```
     1. afficher les différences entre deux fichiers textes
         ```bash
-        # Répondre ici
+        # Compare-Object (Get-Content fichier1.txt) (Get-Content fichier2.txt)
+
         ```
 1. Expliquez en une ou deux phrases le rôle de ces commandes et dans quel contexte elles peuvent être utiles pour un développeur.
     * `ssh`
-        > Répondre ici
+        > Permet de se connecter à une machine distante en ligne de commande (exemple : serveur Linux). Indispensable pour          déployer ou administrer à distance.
     * `screen`/`tmux`
-        > Répondre ici
+        > Permettent d’ouvrir plusieurs sessions dans un même terminal et de les garder actives même après déconnexion.             Très utile pour lancer des programmes longs.
     * `curl`/[HTTPie](https://httpie.org/)
-        > Répondre ici
+        > Permettent d’envoyer des requêtes HTTP depuis le terminal, pratique pour tester une API ou un site web.
     * [jq](https://stedolan.github.io/jq/)
-        > Répondre ici
+        > Outil pour traiter et filtrer du JSON en ligne de commande. Utile quand un développeur manipule des réponses               d’API.
 
 ### Découverte de votre *IDE*
 Dans cet exercice, vous expliquerez en quelques phrases comment vous réalisez les actions ci-dessous dans votre IDE.
@@ -284,28 +291,28 @@ Vous pouvez choisir l'IDE/éditeur de texte de votre choix.
 Pour réaliser cette exercice, vous devez bien évidemment vous reporter à la documentations de l'IDE ([IntelliJ IDEA](https://www.jetbrains.com/help/idea/discover-intellij-idea.html#developer-tools), [Visual Studio Code](https://code.visualstudio.com/docs), [Eclipse](https://help.eclipse.org/2020-09/index.jsp), …).
 
 1. Quels IDE ou éditeurs de texte utilisez-vous pour le développement Java ?
-    > Répondre ici
+    > J’utilise Eclipse et VS Code pour le développement Java.
 
     Pour la suite, ne considérez que l'un de vos choix.
 1. Comment vérifier/définir que l'encodage utilisé est *UTF-8* ?
-    > Répondre ici
+    > Dans Eclipse : Window > Preferences > General > Workspace > Text file encoding → choisir UTF-8.
 1. Comment choisir le JDK à utiliser dans un projet ?
-    > Répondre ici
+    > Right click sur le projet > Properties > Java Build Path > Libraries > Add Library > JRE System Library → choisir le       JDK installé.
 1. Comment préciser la version Java des sources dans un projet ?
-    > Répondre ici
+    >Right click sur le projet > Properties > Java Compiler > Compiler compliance level → choisir la version
 1. Comment ajouter une bibliothèque externe dans un projet ?
-    > Répondre ici
+    > Right click sur le projet > Build Path > Configure Build Path > Add External JARs.
 1. Comment reformater un fichier source Java ?
-    > Répondre ici
+    > Ctrl + Shift + F reformate automatiquement le code.
 1. Comment trouver la déclaration d'une variable ou méthode ?
-    > Répondre ici
+    > Sélectionner la variable → F3 (Go to Declaration).
 1. Comment insérer un bloc de code prédéfini (*snippet*) ?
-    > Répondre ici
+    > Taper un mot-clé comme main puis Ctrl + Space pour activer l’auto-complétion.
 1. Comment renommer une classe dans l'ensemble du projet ?
-    > Répondre ici
+    > Sélectionner la classe → Refactor > Rename ou raccourci Alt + Shift + R.
 1. Comment exécuter le programme en lui passant un paramètre en ligne de commande ?
-    > Répondre ici
+    > Run > Run Configurations > Arguments → entrer les paramètres dans "Program arguments".
 1. Comment déboguer le programme en visualisant le contenu d'une ou plusieurs variables ?
-    > Répondre ici
+    > Lancer en mode Debug (F11) → placer un point d’arrêt → variables visibles dans l’onglet Variables.
 1. Quels paramètres ou fonctionnalités vous semblent particulièrement importants/utiles pour le développement Java ?
-    > Répondre ici
+    > Le refactoring, le débogage pas-à-pas, l’intégration de JUnit pour les tests, la gestion de Git intégrée, et la            configuration du JDK.
